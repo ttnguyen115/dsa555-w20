@@ -32,6 +32,14 @@ public:
 template <typename T>
 void DList<T>::push_front(const T& data){
 
+	Node* nn=new Node(data,front_);
+	if(front_!=nullptr){
+		front_->prev_=nn;
+	}
+	else{
+		back_ = nn;
+	}
+	front_ = nn;
 }
 template <typename T>
 void DList<T>::push_back(const T& data){
@@ -139,7 +147,7 @@ void Sentinel<T>::reversePrint() const{
 		std::cout << curr->data_ << " ";
 		curr=curr->prev_;
 	}
-	if(back->prev_==front_){
+	if(back_->prev_==front_){
 		std::cout << "empty list";
 	}
 	std::cout << std::endl;
