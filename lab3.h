@@ -47,6 +47,11 @@ void DList<T>::push_back(const T& data){
 }
 template <typename T>
 void DList<T>::pop_front(){
+	Node* rm = front_;
+	front_=front_->next_;
+	front_->prev_=nullptr;
+	delete front_;
+
 
 }
 template <typename T>
