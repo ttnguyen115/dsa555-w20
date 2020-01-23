@@ -54,7 +54,7 @@ void DList<T>::pop_front(){
 			front_->prev_=nullptr;
 		}	
 		else{
-			front_=front_->next_;
+			front_=nullptr;
 			back_=nullptr;
 		}
 
