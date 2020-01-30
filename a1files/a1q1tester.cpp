@@ -194,7 +194,7 @@ bool test4(std::string& error){
 
 	}
 	for(int i=0;i<50;i++){
-		result = theSet.unionSets(i,-(rand()%100));
+		result = theSet.unionSets(i,(-1-(rand()%100)));
 		if(result!= false){
 			rc=false;
 			error="Error 4c: unionSets() should return false if one or more of the arguments is not a valid set id";
@@ -202,7 +202,7 @@ bool test4(std::string& error){
 
 	}
 	for(int i=0;i<50;i++){
-		result = theSet.unionSets(-(rand()%100),i);
+		result = theSet.unionSets((-1-(rand()%100)),i);
 		if(result!= false){
 			rc=false;
 			error="Error 4d: unionSets() should return false if one or more of the arguments is not a valid set id";
@@ -210,7 +210,7 @@ bool test4(std::string& error){
 	}
 	
 	for(int i=0;rc && i<50;i+=2){
-		int first=-(rand()%100);
+		int first=(-1-(rand()%100));
 		int second=100+(rand()%100);
 		if(rand()%2){
 			result=theSet.unionSets(first,second);
