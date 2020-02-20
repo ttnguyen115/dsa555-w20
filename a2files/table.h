@@ -133,14 +133,14 @@ void SimpleTable<TYPE>::update(const string& key, const TYPE& value){
 template <class TYPE>
 bool SimpleTable<TYPE>::remove(const string& key){
 	int idx=-1;
-	int size=numRecords();
-	for(int i=0;i<size;i++){
+	for(int i=0;i<numRecords();i++){
 		if(records_[i]->key_ == key){
 			idx=i;
 		}
 	}
 	if(idx!=-1){
 		delete records_[idx];
+		int size=numRecords();
 		for(int i=idx;i<size-1;i++){
 			records_[i]=records_[i+1];
 		}
