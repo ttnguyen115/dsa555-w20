@@ -1,7 +1,7 @@
 /*************************************************************/
 /*                                                           */
 /*    starter file for a2                                    */
-/*    													     */
+/*                                                           */
 /*                                                           */
 /*************************************************************/
 
@@ -219,10 +219,11 @@ public:
 	virtual ~ChainingTable();
 	virtual bool isEmpty() const {}
 	virtual int numRecords() const {}
+	int capacity() const{}
 
 };
 template <class TYPE>
-ChainingTable<TYPE>::ChainingTable(int capacity,double maxLoadFactor): Table<TYPE>(){
+ChainingTable<TYPE>::ChainingTable(int maxExpected,double maxLoadFactor): Table<TYPE>(){
 
 }
 
