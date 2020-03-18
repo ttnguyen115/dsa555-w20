@@ -21,7 +21,7 @@ int main(void){
 		                       //1 0
 							   //2 1 0
 	}
-	regular.reversePrint();
+	regular.reversePrint();    //0 1 2
 
 	for(int i=3;i<6;i++){
 		regular.push_back(i);

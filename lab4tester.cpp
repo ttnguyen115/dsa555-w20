@@ -6,7 +6,7 @@
 /*     ./a.out                                              */
 /************************************************************/
 
-#include "lab4.h"
+#include "lab4demo.h"
 #include <iostream>
 
 int main(void){
