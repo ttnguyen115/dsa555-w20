@@ -1290,7 +1290,7 @@ bool test11(std::string keys[], int data[], int max, std::string& error){
 	if(isGood && table2.numRecords() != 60001){
 		error="Error 11l: number of records was not correct.\n Correct number of records: 60001";
 		error+="\nYour function returns: ";
-		error+=std::=to_string(table2.numRecords());
+		error+=std::to_string(table2.numRecords());
 		isGood=false;
 	}
 	return isGood;
