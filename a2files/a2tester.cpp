@@ -1,7 +1,7 @@
 /**************************************************************************/
 /*                                                                        */
 /*   A2 tester file                                                       */
-/*                                                                        */
+/*   v 1.1: fixed std:: in front of to_string/string in various places    */
 /*   To compile: g++ a2tester.cpp timer.cpp -std=c++0x                    */
 /*   You will also need:                                                  */
 /*      * timer.h/timer.cpp                                               */
@@ -32,7 +32,7 @@ const int numTests=11;
 const int maxRecords=2000000;
 
 typedef bool (*TestPtr)(std::string [], int [], int , std::string& );
-void createData(string keys[],int data[],int max);
+void createData(std::string keys[],int data[],int max);
 int main(void){
 	TestPtr runTest[numTests]={test1, test2, test3, test4, test5, 
 		                       test6, test7, test8, test9, test10,
@@ -248,9 +248,9 @@ bool test3(std::string keys[], int data[], int max, std::string& error){
 				error="Error 3b: value associated with key: ";
 				error+=keys[i];
 				error+= " should be: ";
-				error+=to_string(data[i]);
+				error+=std::to_string(data[i]);
 				error+="\nyour find passed back: ";
-				error+=to_string(value);
+				error+=std::to_string(value);
 			}
 		}
 		i++;
@@ -269,9 +269,9 @@ bool test3(std::string keys[], int data[], int max, std::string& error){
 				error="Error 3d: value associated with key: ";
 				error+=keys[i];
 				error+= " should be: ";
-				error+=to_string(data[i]);
+				error+=std::to_string(data[i]);
 				error+="\nyour find passed back: ";
-				error+=to_string(value);
+				error+=std::to_string(value);
 			}
 		}
 		i++;
@@ -290,9 +290,9 @@ bool test3(std::string keys[], int data[], int max, std::string& error){
 				error="Error 3f: value associated with key: ";
 				error+=keys[i];
 				error+= " should be: ";
-				error+=to_string(data[i]);
+				error+=std::to_string(data[i]);
 				error+="\nyour find passed back: ";
-				error+=to_string(value);
+				error+=std::to_string(value);
 			}
 		}
 		i++;
@@ -467,9 +467,9 @@ bool test5(std::string keys[], int data[], int max, std::string& error){
 				error="Error 5b: value associated with key: ";
 				error+=keys[i];
 				error+= " should be: ";
-				error+=to_string(correct);
+				error+=std::to_string(correct);
 				error+="\nyour find passed back: ";
-				error+=to_string(value);
+				error+=std::to_string(value);
 			}
 		}
 		i++;
@@ -490,9 +490,9 @@ bool test5(std::string keys[], int data[], int max, std::string& error){
 				error="Error 5d: value associated with key: ";
 				error+=keys[i];
 				error+= " should be: ";
-				error+=to_string(correct);
+				error+=std::to_string(correct);
 				error+="\nyour find passed back: ";
-				error+=to_string(value);
+				error+=std::to_string(value);
 			}
 		}
 		i++;
@@ -512,9 +512,9 @@ bool test5(std::string keys[], int data[], int max, std::string& error){
 				error="Error 5f: value associated with key: ";
 				error+=keys[i];
 				error+= " should be: ";
-				error+=to_string(correct);
+				error+=std::to_string(correct);
 				error+="\nyour find passed back: ";
-				error+=to_string(value);
+				error+=std::to_string(value);
 			}
 		}
 		i++;
@@ -654,9 +654,9 @@ bool test6(std::string keys[], int data[], int max, std::string& error){
 				error="Error 6n: value associated with key: ";
 				error+=keys[i];
 				error+= " should be: ";
-				error+=to_string(data[i]);
+				error+=std::to_string(data[i]);
 				error+="\nyour find passed back: ";
-				error+=to_string(value);
+				error+=std::to_string(value);
 			}
 		}
 		i++;
@@ -675,9 +675,9 @@ bool test6(std::string keys[], int data[], int max, std::string& error){
 				error="Error 6p: value associated with key: ";
 				error+=keys[i];
 				error+= " should be: ";
-				error+=to_string(data[i]);
+				error+=std::to_string(data[i]);
 				error+="\nyour find passed back: ";
-				error+=to_string(value);
+				error+=std::to_string(value);
 			}
 		}
 		i++;
@@ -697,9 +697,9 @@ bool test6(std::string keys[], int data[], int max, std::string& error){
 				error="Error 6r: value associated with key: ";
 				error+=keys[i];
 				error+= " should be: ";
-				error+=to_string(data[i]);
+				error+=std::to_string(data[i]);
 				error+="\nyour find passed back: ";
-				error+=to_string(value);
+				error+=std::to_string(value);
 			}
 		}
 		i++;
@@ -725,7 +725,7 @@ bool test7(std::string keys[], int data[], int max, std::string& error){
 		}
 		if(table.capacity() != 500000){
 			error="Error 7b: capacity() should return 500000, it returned: ";
-			error+=to_string(table.capacity());
+			error+=std::to_string(table.capacity());
 		}
 	}
 
@@ -794,47 +794,47 @@ bool test8(std::string keys[], int data[], int max, std::string& error){
 
 	if(isGood && table1copy.numRecords() != table1.numRecords()){
 		error="Error 8a: number of records was not correct.\n Correct number of records: ";
-		error+=to_string(table1.numRecords());
+		error+=std::to_string(table1.numRecords());
 		error+="\nYour function returns: ";
-		error+=to_string(table1copy.numRecords());
+		error+=std::to_string(table1copy.numRecords());
 		isGood=false;
 	}
 	if(isGood && table2copy.numRecords() != table2.numRecords()){
 		error="Error 8b: number of records was not correct.\n Correct number of records: ";
-		error+=to_string(table2.numRecords());
+		error+=std::to_string(table2.numRecords());
 		error+="\nYour function returns: ";
-		error+=to_string(table2copy.numRecords());
+		error+=std::to_string(table2copy.numRecords());
 		isGood=false;
 
 	}
 	if(isGood && table3copy.numRecords() != table3.numRecords() ){
 		error="Error 8c: number of records was not correct.\n Correct number of records: ";
-		error+=to_string(table3.numRecords());
+		error+=std::to_string(table3.numRecords());
 		error+="\nYour function returns: ";
-		error+=to_string(table3copy.numRecords());
+		error+=std::to_string(table3copy.numRecords());
 		isGood=false;
 	}
 
 	if(isGood && table1copy.capacity() != table1.capacity()){
 		error="Error 8d: copy's capacity was not correct.\n Correct capacity: ";
-		error+=to_string(table1.capacity());
+		error+=std::to_string(table1.capacity());
 		error+="\nYour function returns: ";
-		error+=to_string(table1copy.capacity());
+		error+=std::to_string(table1copy.capacity());
 		isGood=false;
 	}
 	if(isGood && table2copy.capacity() != table2.capacity()){
 		error="Error 8e: copy's capacity was not correct.\n Correct capacity: ";
-		error+=to_string(table2.capacity());
+		error+=std::to_string(table2.capacity());
 		error+="\nYour function returns: ";
-		error+=to_string(table2copy.capacity());
+		error+=std::to_string(table2copy.capacity());
 		isGood=false;
 
 	}
 	if(isGood && table3copy.capacity() != table3.capacity()){
 		error="Error 8f: copy's capacity was not correct.\n Correct capacity: ";
-		error+=to_string(table3.capacity());
+		error+=std::to_string(table3.capacity());
 		error+="\nYour function returns: ";
-		error+=to_string(table3copy.capacity());
+		error+=std::to_string(table3copy.capacity());
 		isGood=false;
 	}
 
@@ -872,9 +872,9 @@ bool test8(std::string keys[], int data[], int max, std::string& error){
 				error="Error 8h: value associated with key: ";
 				error+=keys[i];
 				error+= " should be: ";
-				error+=to_string(data[i]);
+				error+=std::to_string(data[i]);
 				error+="\nyour find passed back: ";
-				error+=to_string(value);
+				error+=std::to_string(value);
 				error+="\nperhaps a deep copy was not made";
 
 			}
@@ -895,9 +895,9 @@ bool test8(std::string keys[], int data[], int max, std::string& error){
 				error="Error 8j: value associated with key: ";
 				error+=keys[i];
 				error+= " should be: ";
-				error+=to_string(data[i]);
+				error+=std::to_string(data[i]);
 				error+="\nyour find passed back: ";
-				error+=to_string(value);
+				error+=std::to_string(value);
 				error+="\nperhaps a deep copy was not made";
 
 			}
@@ -918,9 +918,9 @@ bool test8(std::string keys[], int data[], int max, std::string& error){
 				error="Error 8l: value associated with key: ";
 				error+=keys[i];
 				error+= " should be: ";
-				error+=to_string(data[i]);
+				error+=std::to_string(data[i]);
 				error+="\nyour find passed back: ";
-				error+=to_string(value);
+				error+=std::to_string(value);
 				error+="\nperhaps a deep copy was not made";
 			}
 		}
@@ -976,13 +976,13 @@ bool test9(std::string keys[], int data[], int max, std::string& error){
 	if(table2.numRecords() != 650){
 		error="Error 9a: number of records was not correct.\n Correct number of records: 650";
 		error+="\nYour function returns: ";
-		error+=to_string(table2.numRecords());
+		error+=std::to_string(table2.numRecords());
 		isGood=false;
 	} 
 	if(isGood && table2.capacity() != 1000){
 		error="Error 9b: copy's capacity was not correct.\n Correct capacity: 1000 ";
 		error+="\nYour function returns: ";
-		error+=to_string(table2.capacity());
+		error+=std::to_string(table2.capacity());
 		isGood=false;
 	}
 	while(isGood && count<650){
@@ -997,9 +997,9 @@ bool test9(std::string keys[], int data[], int max, std::string& error){
 				error="Error 9d: value associated with key: ";
 				error+=keys[i];
 				error+= " should be: ";
-				error+=to_string(data[i]);
+				error+=std::to_string(data[i]);
 				error+="\nyour find() passed back: ";
-				error+=to_string(value);
+				error+=std::to_string(value);
 				error+="\nperhaps a deep copy was not made";
 
 			}
@@ -1012,15 +1012,15 @@ bool test9(std::string keys[], int data[], int max, std::string& error){
 	correctCap*=2;
 	if(isGood && table2.capacity() != correctCap){
 		error="Error 9e: copy's capacity was not correct.\n Correct capacity: ";
-		error+=to_string(correctCap);
+		error+=std::to_string(correctCap);
 		error+="\nYour function returns: ";
-		error+=to_string(table2.capacity());
+		error+=std::to_string(table2.capacity());
 		isGood=false;
 	}
 	if(isGood && table2.numRecords() != 651){
 		error="Error 9f: number of records was not correct.\n Correct number of records: 651";
 		error+="\nYour function returns: ";
-		error+=to_string(table2.numRecords());
+		error+=std::to_string(table2.numRecords());
 		isGood=false;
 	}
 
@@ -1029,14 +1029,14 @@ bool test9(std::string keys[], int data[], int max, std::string& error){
 	if(table2.numRecords() != 1000000){
 		error="Error 9g: number of records was not correct.\n Correct number of records: 650";
 		error+="\nYour function returns: ";
-		error+=to_string(table2.numRecords());
+		error+=std::to_string(table2.numRecords());
 		isGood=false;
 	} 
 	if(isGood && table2.capacity() != correctCap){
 		error="Error 9h: copy's capacity was not correct.\n Correct capacity: ";
-		error+=to_string(correctCap);
+		error+=std::to_string(correctCap);
 		error+="\nYour function returns: ";
-		error+=to_string(table2.capacity());
+		error+=std::to_string(table2.capacity());
 		isGood=false;
 	}
 
@@ -1062,9 +1062,9 @@ bool test9(std::string keys[], int data[], int max, std::string& error){
 				error="Error 9j: value associated with key: ";
 				error+=keys[i];
 				error+= " should be: ";
-				error+=to_string(data[i]);
+				error+=std::to_string(data[i]);
 				error+="\nyour find() passed back: ";
-				error+=to_string(value);
+				error+=std::to_string(value);
 				error+="\nperhaps a deep copy was not made";
 
 			}
@@ -1096,15 +1096,15 @@ bool test10(std::string keys[], int data[], int max, std::string& error){
 	ChainingTable<int> moved1=std::move(table);
 	if(isGood && moved1.capacity() != correctCap){
 		error="Error 10a: copy's capacity was not correct.\n Correct capacity: ";
-		error+=to_string(correctCap);
+		error+=std::to_string(correctCap);
 		error+="\nYour function returns: ";
-		error+=to_string(moved1.capacity());
+		error+=std::to_string(moved1.capacity());
 		isGood=false;
 	}
 	if(isGood && moved1.numRecords() != 6500){
 		error="Error 10b: number of records was not correct.\n Correct number of records: 6500";
 		error+="\nYour function returns: ";
-		error+=to_string(moved1.numRecords());
+		error+=std::to_string(moved1.numRecords());
 		isGood=false;
 	}
 	i=0;
@@ -1121,9 +1121,9 @@ bool test10(std::string keys[], int data[], int max, std::string& error){
 				error="Error 10d: value associated with key: ";
 				error+=keys[i];
 				error+= " should be: ";
-				error+=to_string(data[i]);
+				error+=std::to_string(data[i]);
 				error+="\nyour find passed back: ";
-				error+=to_string(value);
+				error+=std::to_string(value);
 				error+="\nperhaps a deep copy was not made";
 			}
 		}
@@ -1134,15 +1134,15 @@ bool test10(std::string keys[], int data[], int max, std::string& error){
 	correctCap*=2;
 	if(isGood && moved1.capacity() != correctCap){
 		error="Error 10e: copy's capacity was not correct.\n Correct capacity: ";
-		error+=to_string(correctCap);
+		error+=std::to_string(correctCap);
 		error+="\nYour function returns: ";
-		error+=to_string(moved1.capacity());
+		error+=std::to_string(moved1.capacity());
 		isGood=false;
 	}
 	if(isGood && moved1.numRecords() != 6501){
 		error="Error 10f: number of records was not correct.\n Correct number of records: 6501";
 		error+="\nYour function returns: ";
-		error+=to_string(moved1.numRecords());
+		error+=std::to_string(moved1.numRecords());
 		isGood=false;
 	}
 	return isGood;
@@ -1181,15 +1181,15 @@ bool test11(std::string keys[], int data[], int max, std::string& error){
 
 	if(isGood && table2.capacity() != correctCap){
 		error="Error 11a: copy's capacity was not correct.\n Correct capacity: ";
-		error+=to_string(correctCap);
+		error+=std::to_string(correctCap);
 		error+="\nYour function returns: ";
-		error+=to_string(table2.capacity());
+		error+=std::to_string(table2.capacity());
 		isGood=false;
 	}
 	if(isGood && table2.numRecords() != 650){
 		error="Error 11b: number of records was not correct.\n Correct number of records: 650";
 		error+="\nYour function returns: ";
-		error+=to_string(table2.numRecords());
+		error+=std::to_string(table2.numRecords());
 		isGood=false;
 	}
 
@@ -1207,9 +1207,9 @@ bool test11(std::string keys[], int data[], int max, std::string& error){
 				error="Error 11d: value associated with key: ";
 				error+=keys[i];
 				error+= " should be: ";
-				error+=to_string(data[i]);
+				error+=std::to_string(data[i]);
 				error+="\nyour find() passed back: ";
-				error+=to_string(value);
+				error+=std::to_string(value);
 				error+="\nperhaps a deep copy was not made";
 
 			}
@@ -1222,15 +1222,15 @@ bool test11(std::string keys[], int data[], int max, std::string& error){
 	correctCap*=2;
 	if(isGood && table2.capacity() != correctCap){
 		error="Error 11e: copy's capacity was not correct.\n Correct capacity: ";
-		error+=to_string(correctCap);
+		error+=std::to_string(correctCap);
 		error+="\nYour function returns: ";
-		error+=to_string(table2.capacity());
+		error+=std::to_string(table2.capacity());
 		isGood=false;
 	}
 	if(isGood && table2.numRecords() != 651){
 		error="Error 11f: number of records was not correct.\n Correct number of records: 651";
 		error+="\nYour function returns: ";
-		error+=to_string(table2.numRecords());
+		error+=std::to_string(table2.numRecords());
 		isGood=false;
 	}
     
@@ -1239,15 +1239,15 @@ bool test11(std::string keys[], int data[], int max, std::string& error){
 
 	if(isGood && table2.capacity() != correctCap){
 		error="Error 11g: copy's capacity was not correct.\n Correct capacity: ";
-		error+=to_string(correctCap);
+		error+=std::to_string(correctCap);
 		error+="\nYour function returns: ";
-		error+=to_string(table2.capacity());
+		error+=std::to_string(table2.capacity());
 		isGood=false;
 	}
 	if(isGood && table2.numRecords() != 60000){
 		error="Error 11h: number of records was not correct.\n Correct number of records: 60000";
 		error+="\nYour function returns: ";
-		error+=to_string(table2.numRecords());
+		error+=std::to_string(table2.numRecords());
 		isGood=false;
 	}
 
@@ -1266,9 +1266,9 @@ bool test11(std::string keys[], int data[], int max, std::string& error){
 				error="Error 11j: value associated with key: ";
 				error+=keys[i];
 				error+= " should be: ";
-				error+=to_string(data[i]);
+				error+=std::to_string(data[i]);
 				error+="\nyour find() passed back: ";
-				error+=to_string(value);
+				error+=std::to_string(value);
 				error+="\nperhaps a deep copy was not made";
 
 			}
@@ -1282,15 +1282,15 @@ bool test11(std::string keys[], int data[], int max, std::string& error){
 	correctCap*=2;
 	if(isGood && table2.capacity() != correctCap){
 		error="Error 11k: copy's capacity was not correct.\n Correct capacity: ";
-		error+=to_string(correctCap);
+		error+=std::to_string(correctCap);
 		error+="\nYour function returns: ";
-		error+=to_string(table2.capacity());
+		error+=std::to_string(table2.capacity());
 		isGood=false;
 	}
 	if(isGood && table2.numRecords() != 60001){
 		error="Error 11l: number of records was not correct.\n Correct number of records: 60001";
 		error+="\nYour function returns: ";
-		error+=to_string(table2.numRecords());
+		error+=std::=to_string(table2.numRecords());
 		isGood=false;
 	}
 	return isGood;
