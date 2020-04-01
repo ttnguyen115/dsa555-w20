@@ -2,15 +2,28 @@
 #include <iostream>
 //T must be a comparable type
 template <typename T>
-class BST{
+class AVL{
 	struct Node{
 		T data_;
 		Node* left_;
 		Node* right_;
-		Node(const T data=T{},Node* left=nullptr,Node* right=nullptr){
+		int height_;    //height of the subtree with this node
+		                //as root
+		Node(const T data=T{}){
 			data_=data;
-			left_=left;
-			right_=right;
+			left_=nullptr;
+			right_=nullptr;
+			height_=1
+		}
+		void updateHeight() {
+			int heightLeft=left_?left_->height_:0;
+			int heightRight=right_?right_height_:0;
+			height_=(heightRight > heightLeft)?heightRight+1:heightLeft+1;
+		}
+		int balance() const{
+			int heightLeft=left_?left_->height_:0;
+			int heightRight=right_?right_height_:0;
+			return heightRight-heightLeft;			
 		}
 	};
 
@@ -57,48 +70,58 @@ class BST{
 			else{
 				insert(data,rootOfSubtree->right_);
 			}
-		}
-	}
 
-
-public:
-	BST(){
-		root_=nullptr;
-	}
-	void insertIterative(const T& data){
-		if(root_==nullptr){
-			root_=new Node(data);
-		}
-		else{
-			Node* curr=root_;
-			while(curr!=nullptr){
-				if(data < curr->data_){
-					if(curr->left_!=nullptr){
-						curr=curr->left_;
-					}
-					else{
-						curr->left_=new Node(data);
-						curr=nullptr;
-					}
+			int nodeBalance = rootOfSubtree->balance();
+			if(nodeBalance >= 2){
+				int childBalance=rootOfSubtree->right_->balance();
+				if(childBalance > 0){
+					leftRotate(rootOfSubtree);
+					rootOfSubtree->left_->updateHeight();
 				}
 				else{
-					if(curr->right_!=nullptr){
-						curr=curr->right_;
-					}
-					else{
-						curr->right_=new Node(data);
-						curr=nullptr;
-					}
+					rightRotate(rootOfSubtree->right_);
+					leftRotate(rootOfSubtree);
+					rootOfSubtree->left_->updateHeight();
+					rootOfSubtree->right_->updateHeight();
+
+				}
+
+			}
+			else if(nodeBalance<= -2){
+				int childBalance=rootOfSubtree->left_->balance();
+				if(childBalance < 0){
+					rightRotate();
+				}
+				else{
+					leftRotate();
+					rightRotate();
 				}
 			}
 
+
+			rootofSubtree->updateHeight();
 		}
 	}
+
+	void rightRotate(Node*& rootofSubtree){
+	}
+	void leftRotate(Node*& rootofSubtree){
+		Node* Bptr=rootOfSubtree->right_;
+		Node* Yptr=Bptr->left_;
+		rootOfSubtree->right=Yptr;
+		Bptr-left_=rootofSubtree;
+		rootOfSubtree=Bptr;
+
+
+	}
+
+public:
+	AVL(){
+		root_=nullptr;
+	}
+
 	void insert(const T data){
 		insert(data,root_);
-	}
-	void remove(const T data){
-		remove(data,root_);
 	}
 	void printInorder() const{
 		printInorder(root_);
