@@ -18,7 +18,7 @@ class Queue{
 		back_=used_;
 	}
 public:
-	Queue(){
+	Queue(int max=15){
 		theQueue_=new T[max];
 		capacity_=max;
 		used_=0;
