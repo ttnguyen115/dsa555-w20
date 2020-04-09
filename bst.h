@@ -46,25 +46,75 @@ class BST{
 			std::cout << rootOfSubtree->data_ << " ";
 		}
 	}
-	void insert(const T data, Node*& rootOfSubtree){
-		if(rootOfSubtree == nullptr){
-			rootOfSubtree=new Node(data);
+
+	//insert data into subtree
+	void insert(const T& data, Node*& subtree){
+		if(subtree==nullptr){
+			subtree = new Node(data);
 		}
 		else{
-			if(data < rootOfSubtree->data_){
-				insert(data,rootOfSubtree->left_);
+			if(data < subtree->data_){
+				insert(data, subtree->left_);
 			}
 			else{
-				insert(data,rootOfSubtree->right_);
+				insert(data, subtree->right_);
 			}
 		}
 	}
 
+	//detach and return the address of the smallest node
+	//in subtree
+	Node* detachSmallest(Node*& subtree){
+
+	}
+
+	//remove the node containing data from the subtree
+	void remove(const T& data, Node*& subtree){
+		if(subtree != nullptr){
+			if(data == subtree->data_){
+				Node* rm=subtree;
+				if(subtree->left_== nullptr && subtree->right_== nullptr){
+					//leaf node
+					subtree = nullptr;
+				}
+				else if (subtree->left_!=nullptr && subtree->right==nullptr){
+					//only have left subtree
+
+				}
+				else if(subtree->right_!=nullptr && subtree->left_==nullptr){
+					//only have right subtree
+				}
+				else{
+					//two children
+					Node* inorderSuccessor = detach(subtree->right_);
+					//...
+
+				}
+
+
+				delete rm;
+
+			}
+			else{
+				if(data < subtree->data_){
+					remove(data,subtree->left_);
+				}
+				else{
+					remove(data,subtree->right_);
+				}
+			}
+
+		}
+	}
 
 public:
 	BST(){
 		root_=nullptr;
 	}
+	void insert(const T data){
+		insert(data,root_);
+	}
+
 	void insertIterative(const T& data){
 		if(root_==nullptr){
 			root_=new Node(data);
@@ -94,11 +144,8 @@ public:
 
 		}
 	}
-	void insert(const T data){
-		insert(data,root_);
-	}
 	void remove(const T data){
-		remove(data,root_);
+		remove(data, root_);
 	}
 	void printInorder() const{
 		printInorder(root_);
